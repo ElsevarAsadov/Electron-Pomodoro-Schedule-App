@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+
+    <!-- STYLE -->
+    <link rel="stylesheet" href="style.css">
+    <title>Pomodoro App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="timer-container">
+        <p id="timer"><p>
+        <div class="button-container">
+          <button id="start">Start</button>
+          <button id="stop">Stop</button>
+          <button id="pause">Pause</button>
+        </div>
+        <div class="tasks">
+          <div class="task-info">
+          <input type="text" id="task-input" placeholder="Enter Your Task:">
+          <button id="add-btn">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./renderer.js"></script>
+</html>
