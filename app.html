@@ -10,26 +10,25 @@
       http-equiv="X-Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
-
     <!-- STYLE -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Pomodoro App</title>
   </head>
   <body>
-    <div class="container">
-      <div class="timer-container">
-        <p id="timer"><p>
-        <div class="button-container">
-          <button id="start">Start</button>
-          <button id="stop">Stop</button>
-          <button id="pause">Pause</button>
-        </div>
-        <div class="tasks">
-          <div class="task-info">
-          <input type="text" id="task-input" placeholder="Enter Your Task:">
-          <button id="add-btn">+</button>
-          </div>
-        </div>
+    <div class="header">
+      <div class="menus">
+        <img id="icon" src="favicon.png" />
+        <img id="options" src="options.png" />
+      </div>
+      <div class="slogan"><p>Pomodoro</p></div>
+    </div>
+    <div class="timer-container">
+      <p id="round">ROUND #1</p>
+      <!-- HERE GOING TIME IN JS -->
+      <p id="timer">00:00:00</p>
+      <div class="button-container">
+        <button id="start-pause">START</button>
+        <button id="reset" class="stop">RESET</button>
       </div>
     </div>
   </body>

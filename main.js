@@ -13,11 +13,12 @@ class App {
       this._createWindow(width, height);
 
       //setting window icon
-      this.win.setIcon("favicon.png")
+      this.win.setIcon("favicon.png");
       //loads html
       this._loadGui();
 
-      this.win.webContents.openDevTools();
+      //devtool for debugging.
+      //this.win.webContents.openDevTools();
     });
   }
   _createWindow() {
@@ -26,9 +27,6 @@ class App {
       height: this.window_h,
       resizable: false,
       fullscreenable: false,
-      webPreferences: {
-        preload: path.join(__dirname, "preload.js"),
-      },
     });
   }
 

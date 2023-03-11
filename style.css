@@ -1,136 +1,173 @@
-:root{
-    --color1: #fc6e51;
-    --color2: #e9573f;
-    --color3: #ffc800;
+@font-face {
+  font-family: "Antonio-bold";
+  src: url("fonts/Antonio-Bold.ttf");
 }
 
+@font-face {
+  font-family: "Antonio-regular";
+  src: url("fonts/Antonio-Regular.ttf");
+}
 
+@font-face {
+  font-family: "Antonio-light";
+  src: url("fonts/Antonio-Light.ttf");
+}
+@font-face {
+  font-family: "Choko";
+  src: url("fonts/ChokoMilky.ttf");
+}
+
+:root {
+  --color1: rgba(133, 91, 226);
+  --color2: rgba(7, 7, 7);
+  --color3: rgba(226, 212, 90);
+  --color4: rgba(225, 118, 90);
+  --color5: rgba(93, 190, 116);
+}
+
+html::-webkit-scrollbar {
+  background: var(--color5);
+  width: 10px;
+  color: black;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: var(--color2);
+}
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Antonio-regular;
+
+  cursor: default;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 
-body{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 100dvw;
-  min-height: 100dvh;
-  background-color: var(--color2) !important;
+body {
+  overflow-x: hidden;
+  background-color: var(--color5);
 }
 
-.container{
+.header {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  width: 100%;
+  height: 40dvh;
+  background-color: var(--color5);
+}
+
+#icon {
+  display: block;
+  height: 70px;
+  transition: rotate 0.5s linear;
+}
+
+#options {
+  display: block;
+  height: 45px;
+  transition: rotate 0.5s linear;
+  cursor: pointer !important;
+}
+
+#options:hover,
+#icon:hover {
+  transition: rotate 0.5s linear;
+  rotate: 360deg;
+}
+
+.menus {
+  display: flex;
+  height: 30%;
+  justify-content: space-between;
   align-items: center;
+  flex-grow: 0 !important;
+  background-color: var(--color4);
+}
+
+.slogan {
+  display: flex;
+  height: 70%;
+  align-items: end;
+  justify-content: start;
+  flex-grow: 1 !important;
+  letter-spacing: 0.5rem;
+  padding-left: 20px;
+  border-bottom-right-radius: 200px;
+  background-color: var(--color4);
+}
+
+.slogan p {
+  font-family: Choko !important;
+  font-size: 6.6rem;
+  color: green;
+  text-shadow: 1px 1px 0px #ff0000;
+}
+
+#round {
+  margin-bottom: 15px;
+  font-size: 2rem;
 }
 
 .timer-container {
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
+  height: 50dvh;
   justify-content: center;
-  row-gap: 10px;
   align-items: center;
-  width: 400px;
-  height: 40%;
-  box-shadow: 3px 0 100px 10px var(--color3);
-  padding: 20px;
-  border-radius: 10px;
+  background-color: var(--color5);
+  font-family: Antonio-bold !important;
 }
 
-
-#timer{
-  color: white;
-  font-size: 3.5rem;
-  font-weight: 900;
-  letter-spacing: .35rem;
+#timer {
+  font-size: 3.3rem;
+  padding: 35px;
+  background-color: var(--color3);
+  border-radius: 12px;
+  box-shadow: 3px 3px 5px 10px var(--color3);
 }
-.button-container{
+
+.button-container {
   display: flex;
-  justify-content: center;
-  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 45px;
 }
 
-#start,
-#stop,
-#pause {
-  font-size: 1.4rem;
+#start-pause,
+#reset {
+  font-family: Antonio-bold;
+  font-size: 1.5rem;
+  box-shadow: 5px 3px 0 0 var(--color2);
+  color: white;
   background-color: transparent;
-  padding: 5px;
-  margin-right: 5px;
-  width: 120px;
-  height: 40px;
-  font-weight: bold;
-  border: none;
+  padding: 10px;
+}
+
+#start-pause {
+  margin-right: 15px;
+}
+
+#stop {
+  margin-left: 15px;
+}
+
+#start-pause:hover,
+#reset:hover {
+  background-color: var(--color2);
+}
+
+.task-container {
+  display: flex;
+  background-color: white;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 45px;
+  height: 50px;
+  border-radius: 5px;
   text-align: center;
 }
-
-#start:hover{
-  background-color: green;
-  box-shadow: 3px 3px 5px 7px green;
-}
-#stop:hover{
-  background-color: red;
-  box-shadow: 3px 3px 5px 7px red;
-}
-#pause:hover{
-  background-color: yellow;
-  box-shadow: 3px 3px 5px 7px yellow;
-}
-
-.tasks{
-  padding: 10px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 90%
-}
-
-#task-input, #add-btn{
-  outline: none;
-  border: none;
-  height: 45px;
-}
-
-#task-input{
-  border-radius: 10px;
-  font-size: 1.4rem;
-}
-#add-btn{
-  width: 50px;
-  margin-left: 20px;
-  background-color: transparent;
-  color: white;
-  border: none;
-  transition: all .4s linear;
-  font-size: 2rem;
-}
-
-#add-btn:hover{
-  background-color: rgba(255, 255, 255, 0.617);
-  color: black;
-}
-
-#taks-input::placeholder{
-  padding-left: 10px;
-  font-weight: bold;
-}
-
-.tasks{
-  width: 100%;
-}
-
-.task{
-  width: 100%;
-  font-size: 1.5rem;
-  color: white;
-  text-align: start;
-  padding-left: 5px;
-  margin: 5px 0px;
-}
-

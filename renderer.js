@@ -1,59 +1,79 @@
-const information = document.getElementById("timer");
-//initial timer text
-information.innerText = "00:00:00";
+// Elements
+const timer = document.getElementById("timer");
+const round = document.getElementById("round");
+const resetBtn = document.querySelector("#reset");
+const startPauseBtn = document.querySelector("#start-pause");
 
-const audioPlayer = new Audio("alarm.mp3");
-status = "start";
+// Application class
+class Application {
+  constructor() {
+    this.audio = new Audio("alarm.mp3");
+    this.round = 1;
 
-function button_handler() {
-  const addButton = document.querySelector("#add-btn");
-  const taskInput = document.querySelector("#task-input");
-  const tasksContainer = document.querySelector(".tasks");
-
-  addButton.addEventListener("click", () => {
-    const taskName = taskInput.value;
-    if (taskName.trim() !== "") {
-      const newTask = document.createElement("div");
-      newTask.classList.add("task");
-      newTask.innerHTML = `
-      <div class="task"><p>${taskName}</p></div>
-      `;
-      tasksContainer.appendChild(newTask);
-      taskInput.value = "";
+    this.sec = 0;
+    this.min = 0;
+    this.hour = 0;
+    this.status = "start";
+  }
+  tick() {
+    if (this.min === 20) {
+      ++this.round;
+      clearInterval(this.interval);
+      this.status = "start";
+      startPauseBtn.innerText = "START";
+      this.audio.play();
+      round.innerText = "ROUND #" + this.round;
+      startPauseBtn.style.display = "none"
+    } else {
+      ++this.sec;
+      if (this.sec === 60) {
+        ++this.min;
+        this.sec = 0;
+      }
+      if (this.min === 60) {
+        ++this.hour;
+        this.min = 0;
+      }
     }
-  });
-}
+    const secStr = this.sec.toString().padStart(2, "0");
+    const minStr = this.min.toString().padStart(2, "0");
+    const hourStr = this.hour.toString().padStart(2, "0");
+    timer.innerText = `${hourStr}:${minStr}:${secStr}`;
+  }
 
-function pomodoroTimer() {
-  let sec = 0;
-  let min = 0;
-  let hour = 0;
-
-  if (status === "start") {
-    const timerId = setInterval(() => {
-      sec ++;
-      if (sec === 60) {
-        min++;
-        sec = 0;
+  run() {
+    startPauseBtn.addEventListener("click", () => {
+      if (this.status === "start") {
+        this.interval = setInterval(this.tick.bind(this), 1);
+        this.status = "stop";
+        startPauseBtn.innerText = "PAUSE";
+      } else if (this.status === "stop") {
+        clearInterval(this.interval);
+        this.status = "start";
+        startPauseBtn.innerText = "START";
       }
-      if (min === 60) {
-        hour++;
-        min = 0;
-      }
+    });
 
-      if(min === 20){
-        audioPlayer.play()
-        status = "pause"
-        clearInterval(timerId)
-      }
-      const secStr = sec.toString().padStart(2, "0");
-      const minStr = min.toString().padStart(2, "0");
-      const hourStr = hour.toString().padStart(2, "0");
+    resetBtn.addEventListener("click", () => {
+      this.reset();
+    });
+  }
 
-      information.innerText = `${secStr}:${minStr}:${hourStr}`
-    }, 1);
+  reset() {
+    this.sec = 0;
+    this.min = 0;
+    this.hour = 0;
+    clearInterval(this.interval);
+    this.status = "start";
+    startPauseBtn.innerText = "START";
+    timer.innerText = "00:00:00";
+    this.audio.pause("alarm.mp3");
+    this.audio.currentTime = 0;
+    startPauseBtn.style.display = "block"
   }
 }
 
-pomodoroTimer();
-button_handler();
+// Starting logic
+const app = new Application();
+
+app.run();
