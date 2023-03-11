@@ -44,7 +44,7 @@ class Application {
   run() {
     startPauseBtn.addEventListener("click", () => {
       if (this.status === "start") {
-        this.interval = setInterval(this.tick.bind(this), 1);
+        this.interval = setInterval(this.tick.bind(this), 1000);
         this.status = "stop";
         startPauseBtn.innerText = "PAUSE";
       } else if (this.status === "stop") {
