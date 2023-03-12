@@ -1,3 +1,4 @@
+/* GENERAL STYLES */
 @font-face {
   font-family: "Antonio-bold";
   src: url("../fonts/Antonio-Bold.ttf");
@@ -51,7 +52,12 @@ body {
   overflow-x: hidden;
   background-color: var(--color5);
 }
+/* --- GENERAL STYLES END ---*/
 
+
+
+
+/* MAIN WINDOW STYLE */
 .header {
   display: flex;
   flex-direction: column;
@@ -124,8 +130,12 @@ body {
 }
 
 #timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 3.3rem;
-  padding: 35px;
+  width: 250px;
+  height: 250px;
   background-color: var(--color3);
   border-radius: 12px;
   box-shadow: 3px 3px 5px 10px var(--color3);
@@ -171,3 +181,15 @@ body {
   border-radius: 5px;
   text-align: center;
 }
+/* --- MAIN WINDOW STYLE END --*/
+
+/* SETTINGS WINDOW */
+
+.settings-container{
+  width: 100dvw;
+  height: 100dvh;
+  background-color: var(--color4);
+  border: 5px var(--color3) solid;
+}
+
+/* ---SETTINGS WINDOW END--- */
