@@ -1,20 +1,20 @@
 @font-face {
   font-family: "Antonio-bold";
-  src: url("fonts/Antonio-Bold.ttf");
+  src: url("../fonts/Antonio-Bold.ttf");
 }
 
 @font-face {
   font-family: "Antonio-regular";
-  src: url("fonts/Antonio-Regular.ttf");
+  src: url("../fonts/Antonio-Regular.ttf");
 }
 
 @font-face {
   font-family: "Antonio-light";
-  src: url("fonts/Antonio-Light.ttf");
+  src: url("../fonts/Antonio-Light.ttf");
 }
 @font-face {
   font-family: "Choko";
-  src: url("fonts/ChokoMilky.ttf");
+  src: url("../fonts/ChokoMilky.ttf");
 }
 
 :root {

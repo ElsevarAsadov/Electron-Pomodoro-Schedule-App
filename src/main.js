@@ -11,9 +11,9 @@ class App {
       Menu.setApplicationMenu(null);
       //creating window
       this._createWindow(width, height);
-
+      console.log(__dirname)
       //setting window icon
-      this.win.setIcon("favicon.png");
+      this.win.setIcon("assets/favicon.png");
       //loads html
       this._loadGui();
 
@@ -31,7 +31,7 @@ class App {
   }
 
   _loadGui() {
-    this.win.loadFile("app.html");
+    this.win.loadFile("src/app.html");
   }
 
   _checkEvents() {
