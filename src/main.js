@@ -1,7 +1,7 @@
 /* This is main proccess modoule which electron window is created
 here and every window events are controlled.*/
 
-const { app, BrowserWindow, Menu, ipcMain } = require("electron");
+const { app, BrowserWindow, Menu, ipcMain, dialog } = require("electron");
 const path = require("path");
 
 class App {
@@ -12,11 +12,6 @@ class App {
     this.window_h = 600;
     //when app is ready to run then show gui
     app.whenReady().then(() => {
-
-
-    
-
-
       //removing menu bar from application menu
       Menu.setApplicationMenu(null);
       //creating window
@@ -27,7 +22,7 @@ class App {
       this._loadGui();
 
       //devtool for debugging.
-      //this.win.webContents.openDevTools();
+      this.win.webContents.openDevTools();
     });
   }
 
@@ -64,6 +59,9 @@ class App {
 
         //settings window properties
         this.win2 = new BrowserWindow({
+          webPreferences: {
+            preload: path.join(__dirname, "preload.js"),
+          },
           width: 300,
           height: 300,
           resizable: false,
@@ -76,13 +74,19 @@ class App {
 
         //loading settings window gui
         this.win2.loadFile("src/settings.html");
+        this.win2.webContents.openDevTools();
         //when setting window is opened main proccess window cannot be moveable
         this.win.setMovable(false);
-      
-      } else {
+      }
+      if (msg === "close") {
         //settings window closing...
         this.win2.close();
         this.win.setMovable(true);
+      }
+
+      if (msg === "dialog") {
+        //showing file dialog to select sound effect
+        this._fileDialog();
       }
     });
   }
@@ -103,6 +107,24 @@ class App {
     app.on("activate", () => {
       if (BrowserWindow.getAllWindows().length === 0) createWindow();
     });
+  }
+
+  _fileDialog() {
+    //if custom sound file is entered
+    dialog
+      .showOpenDialog(this.win2, {
+        filters: [
+            { name: 'Sound', extensions: ["mp3"] }
+          ],
+        properties: ['openFile']
+    }
+      )
+      .then((result) => {
+        this.win.webContents.send('setPath', result.filePaths[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
 

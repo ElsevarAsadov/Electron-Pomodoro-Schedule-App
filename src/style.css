@@ -186,10 +186,44 @@ body {
 /* SETTINGS WINDOW */
 
 .settings-container{
+  display: flex;
+  flex-direction: column;
   width: 100dvw;
   height: 100dvh;
   background-color: var(--color4);
   border: 5px var(--color3) solid;
+  font-size: 1.6rem !important;
+  font-style: Antonio-regular;
 }
 
+#file{
+  background-color: var(--color3);
+  display: block;
+  width: 100px;
+  height: 45px;
+  margin-top: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  box-shadow: 5px 3px 0 0 var(--color2);
+}
+
+#file:hover{
+  color: white;
+  cursor: pointer;
+  background-color: black;
+  text-align: center;
+}
+
+#file-label{
+  margin: 15px 10px;
+}
+
+.file-format{
+  font-size: .9rem;
+  color: var(--color1);
+  margin-top: 5px;
+  margin-left: 5px;
+  font-family: Antonio-bold;
+}
 /* ---SETTINGS WINDOW END--- */

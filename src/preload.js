@@ -9,3 +9,7 @@ contextBridge.exposeInMainWorld('connectionToMain', {
     //'connect is function name to call
     connect: (msg) => ipcRenderer.send('openSettings', msg)
 })
+
+contextBridge.exposeInMainWorld('mainWindow', {
+    getPath: (info) => ipcRenderer.on('setPath', info)
+  })

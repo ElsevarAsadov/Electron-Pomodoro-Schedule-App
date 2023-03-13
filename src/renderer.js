@@ -3,34 +3,35 @@ every user events peforms here and in some situation
 some events is sent to the main process which is the app window
 in electron.*/
 
-
-
 // Elements
 const timer = document.getElementById("timer");
 const round = document.getElementById("round");
 const settingsBtn = document.getElementById("options");
 const resetBtn = document.querySelector("#reset");
 const startPauseBtn = document.querySelector("#start-pause");
-
 // Application class
 class Application {
   constructor() {
-    //audio player class
-    this.audio = new Audio("../sound/alarm.mp3");
     //initial timer properties
     this.round = 1;
     this.sec = 0;
     this.min = 0;
     this.hour = 0;
     this.status = "start";
-
+    this.soundPath = "../sound/alarm.mp3"
+    //audio player class
+    this.audio = new Audio(this.soundPath);
     //settings window status
     this.win2_status = "close";
-
     //seetings window listener
     window.addEventListener("click", (event) => {
       //if settings button clicked
-      console.log(event.target.id);
+    
+      window.mainWindow.getPath((event, path)=>{
+        this.soundPath = path;
+        this.audio = new Audio(this.soundPath)
+      })
+
       if ((event.target.id === "options") & (this.win2_status === "close")) {
         //opening window
         window.connectionToMain.connect("open");
@@ -48,7 +49,7 @@ class Application {
   tick() {
     //checking if time is up
     this.check_time();
-    
+
     //increasing second
     ++this.sec;
 
@@ -82,7 +83,6 @@ class Application {
       startPauseBtn.style.display = "none";
     }
   }
-
 
   run() {
     startPauseBtn.addEventListener("click", () => {
@@ -118,7 +118,6 @@ class Application {
     startPauseBtn.style.display = "block";
   }
 }
-
 
 const app = new Application();
 
