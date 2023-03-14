@@ -20,7 +20,7 @@ class App {
       this.win.setIcon("assets/favicon.png");
       //loads html
       this._loadGui();
-      this.win.webContents.openDevTools();
+      this.win.webContents.openDevTools()
     });
   }
 
@@ -70,6 +70,14 @@ class App {
           x,
           y,
         });
+
+
+        ipcMain.on("sendMsg", (event, msg) =>{
+          this.win.webContents.send("getMsg", msg);
+        }
+        );
+
+        this.win2.webContents.openDevTools()
 
         //loading settings window gui
         this.win2.loadFile("src/settings.html");

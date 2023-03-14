@@ -232,5 +232,7 @@ body {
   margin: 0 auto;
   width: 75%;
   border-color: var(--color4);
+  height: 40px;
+  font-size: 1.6rem;
 }
 /* ---SETTINGS WINDOW END--- */

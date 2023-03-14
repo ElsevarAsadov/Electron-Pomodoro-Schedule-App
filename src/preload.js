@@ -8,7 +8,6 @@ contextBridge.exposeInMainWorld("connectionToMain", {
   //'connect is function name to call
   connect: (msg) => ipcRenderer.send("openSettings", msg),
   getPath: (info) => ipcRenderer.on("setPath", info),
-  test: () => {
-    console.log("TEST");
-  },
+  getMsg: (msg) => ipcRenderer.on("getMsg", msg),
+  sendMsg: (msg) => ipcRenderer.send("sendMsg", msg)
 });

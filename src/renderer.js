@@ -19,6 +19,7 @@ class Application {
     this.hour = 0;
     this.status = "start";
     this.soundPath = "../sound/alarm.mp3";
+    this.roundTime = 20;
     //audio player class
     this.audio = new Audio(this.soundPath);
     //settings window status
@@ -29,6 +30,10 @@ class Application {
       connectionToMain.getPath((event, path) => {
         this.soundPath = path;
         this.audio = new Audio(this.soundPath);
+      });
+
+      connectionToMain.getMsg((event, msg) => {
+        this.roundTime = msg;
       });
 
       if ((event.target.id === "options") & (this.win2_status === "close")) {
@@ -71,7 +76,7 @@ class Application {
 
   //checks if time is up or not.
   check_time() {
-    if (this.sec === 5) {
+    if (this.sec === this.roundTime) {
       ++this.round;
       clearInterval(this.interval);
       this.status = "start";
@@ -98,7 +103,7 @@ class Application {
         startPauseBtn.innerText = "START";
       }
     });
-    
+
     resetBtn.addEventListener("click", () => {
       this.reset();
     });
