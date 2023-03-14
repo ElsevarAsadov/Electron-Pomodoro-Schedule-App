@@ -215,7 +215,8 @@ body {
   text-align: center;
 }
 
-#file-label{
+.label{
+  font-size: 1.4rem;
   margin: 15px 10px;
 }
 
@@ -225,5 +226,11 @@ body {
   margin-top: 5px;
   margin-left: 5px;
   font-family: Antonio-bold;
+}
+
+#round-time{
+  margin: 0 auto;
+  width: 75%;
+  border-color: var(--color4);
 }
 /* ---SETTINGS WINDOW END--- */

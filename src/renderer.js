@@ -18,7 +18,7 @@ class Application {
     this.min = 0;
     this.hour = 0;
     this.status = "start";
-    this.soundPath = "../sound/alarm.mp3"
+    this.soundPath = "../sound/alarm.mp3";
     //audio player class
     this.audio = new Audio(this.soundPath);
     //settings window status
@@ -26,21 +26,20 @@ class Application {
     //seetings window listener
     window.addEventListener("click", (event) => {
       //if settings button clicked
-    
-      window.mainWindow.getPath((event, path)=>{
+      connectionToMain.getPath((event, path) => {
         this.soundPath = path;
-        this.audio = new Audio(this.soundPath)
-      })
+        this.audio = new Audio(this.soundPath);
+      });
 
       if ((event.target.id === "options") & (this.win2_status === "close")) {
         //opening window
-        window.connectionToMain.connect("open");
+        connectionToMain.connect("open");
         this.win2_status = "open";
       }
       //if something clicked except settings btn.
       else if (this.win2_status === "open") {
         //sending msg to main proccess
-        window.connectionToMain.connect("close");
+        connectionToMain.connect("close");
         this.win2_status = "close";
       }
     });
@@ -48,8 +47,7 @@ class Application {
   //this function increases one second every call
   tick() {
     //checking if time is up
-    this.check_time();
-
+    this._timeStat = this.check_time();
     //increasing second
     ++this.sec;
 
@@ -68,12 +66,12 @@ class Application {
     const hourStr = this.hour.toString().padStart(2, "0");
 
     //changes timer values in the html
-    timer.innerText = `${hourStr}:${minStr}:${secStr}`;
+    if (!this._timeStat) timer.innerText = `${hourStr}:${minStr}:${secStr}`;
   }
 
   //checks if time is up or not.
   check_time() {
-    if (this.min === 20) {
+    if (this.sec === 5) {
       ++this.round;
       clearInterval(this.interval);
       this.status = "start";
@@ -81,14 +79,16 @@ class Application {
       this.audio.play();
       round.innerText = "ROUND #" + this.round;
       startPauseBtn.style.display = "none";
+      return true;
     }
+    return false;
   }
 
   run() {
     startPauseBtn.addEventListener("click", () => {
       //if btn is clicked then starts tick.
       if (this.status === "start") {
-        this.interval = setInterval(this.tick.bind(this), 1);
+        this.interval = setInterval(this.tick.bind(this), 1000);
         this.status = "stop";
         startPauseBtn.innerText = "PAUSE";
         //clears timer if time is up or reset
@@ -98,7 +98,7 @@ class Application {
         startPauseBtn.innerText = "START";
       }
     });
-
+    
     resetBtn.addEventListener("click", () => {
       this.reset();
     });

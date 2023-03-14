@@ -20,8 +20,6 @@ class App {
       this.win.setIcon("assets/favicon.png");
       //loads html
       this._loadGui();
-
-      //devtool for debugging.
       this.win.webContents.openDevTools();
     });
   }
@@ -39,6 +37,7 @@ class App {
       title: "Pomodoro App",
     });
 
+    app.isSecureKeyboardEntryEnabled;
     //connection with renderer process.
     ipcMain.on("openSettings", (event, msg) => {
       //'open' idicates setting window should be opened
@@ -74,7 +73,7 @@ class App {
 
         //loading settings window gui
         this.win2.loadFile("src/settings.html");
-        this.win2.webContents.openDevTools();
+
         //when setting window is opened main proccess window cannot be moveable
         this.win.setMovable(false);
       }
@@ -101,6 +100,7 @@ class App {
     //for windows and linux
     app.on("window-all-closed", () => {
       if (process.platform !== "darwin") app.quit();
+      app.focus;
     });
 
     //for mac
@@ -113,17 +113,14 @@ class App {
     //if custom sound file is entered
     dialog
       .showOpenDialog(this.win2, {
-        filters: [
-            { name: 'Sound', extensions: ["mp3"] }
-          ],
-        properties: ['openFile']
-    }
-      )
-      .then((result) => {
-        this.win.webContents.send('setPath', result.filePaths[0]);
+        filters: [{ name: "Sound", extensions: ["mp3"] }],
+        properties: ["openFile"],
       })
-      .catch((err) => {
-        console.log(err);
+      .then((result) => {
+        //checking if path is exists or not.
+        if (!result.canceled) {
+          this.win.webContents.send("setPath", result.filePaths[0]);
+        }
       });
   }
 }
