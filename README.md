@@ -1,4 +1,10 @@
 # Simple Pomodoro App Using Electron Js
+<br>
+<br>
+
+> **Warning**
+> To use this app you should install electron to the application folder following command ```npm install --save-dev electron```
+
 You can use this app to work with pomodoro schedule technic to work efficiently
 <br>
 <br>
