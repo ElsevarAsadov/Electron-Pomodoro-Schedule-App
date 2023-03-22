@@ -5,9 +5,15 @@ fileBtn.addEventListener("click", () => {
   connectionToMain.connect("dialog");
 });
 
-roundTime.addEventListener('input', (event) => {
-  const newValue = event.target.value;
-  console.log(`Input value changed to ${newValue}`);
-  connectionToMain.sendMsg(parseInt(newValue))
+roundTime.addEventListener("input", (event) => {
+  const regex = /^[1-9][0-9]$/;
+  if (!regex.test(roundTime.value)) {
+    roundTime.value = roundTime.value.replace(/[^0-9]/g, "");
+  }
+  if (roundTime.value[0] == 0) {
+    roundTime.value = roundTime.value.replace("0", "");
+  } else {
+    console.log(`Input value changed to ${roundTime.value}`);
+    connectionToMain.sendMsg(roundTime.value);
+  }
 });
-

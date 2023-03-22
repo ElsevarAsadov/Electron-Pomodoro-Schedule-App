@@ -76,7 +76,7 @@ class Application {
 
   //checks if time is up or not.
   check_time() {
-    if (this.sec === this.roundTime) {
+    if (this.min >= this.roundTime) {
       ++this.round;
       clearInterval(this.interval);
       this.status = "start";

@@ -20,7 +20,6 @@ class App {
       this.win.setIcon("assets/favicon.png");
       //loads html
       this._loadGui();
-      this.win.webContents.openDevTools();
     });
   }
 

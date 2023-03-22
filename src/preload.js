@@ -9,5 +9,5 @@ contextBridge.exposeInMainWorld("connectionToMain", {
   connect: (msg) => ipcRenderer.send("openSettings", msg),
   getPath: (info) => ipcRenderer.on("setPath", info),
   getMsg: (msg) => ipcRenderer.on("getMsg", msg),
-  sendMsg: (msg) => ipcRenderer.send("sendMsg", msg)
+  sendMsg: (msg) => ipcRenderer.send("sendMsg", msg),
 });
