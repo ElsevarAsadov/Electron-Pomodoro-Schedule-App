@@ -1,16 +1,16 @@
-#Pomodoro App
-A simple Pomodoro timer app built with Electron and node.js
+# Simple Pomodoro App Using Electron Js
+You can use this app to work with pomodoro schedule technic to work efficiently
+<br>
+<br>
+<br>
+<br>
+![Annotation 2023-03-23 004125](https://user-images.githubusercontent.com/125838640/227033284-a6a2b19a-f20b-4573-941a-9825fb252d2a.png)
+<br>
+<br>
+![Annotation 2023-03-23 004146](https://user-images.githubusercontent.com/125838640/227033290-0623c18f-68b7-460f-8a99-a41329da2a12.png)
+<br>
+<br>
+# App Features
 
-#Features
-Timer for Pomodoro technique to work more efficiently
-Notification sound at the end of each interval
-Pause and resume functionality
-Reset functionality
- 
- --Include screenshots of your app in action.
-
-#Installation
-You can read soruce code from src folder or use directly with executable for windows.If you want to use in other platforms then create suitable executable for it.
-
-#Usage
-you can simply open it from application and start using it.
+1 - You can set your own sound alarm effect \
+2 - You can set your own time period
